@@ -1,0 +1,20 @@
+.include "stdcells.sp"
+
+VDD VPWR 0 1.8
+VSS VGND 0 0
+
+VA A 0 PULSE(0 1.8 0 0.01n 0.01n 5n 10n)
+VB B 0 PULSE(0 1.8 2.5n 0.01n 0.01n 5n 10n)
+
+X1 A B Y VPWR VGND nand2x4
+
+Cload Y 0 0.01p
+
+.tran 0.01n 20n
+
+.control
+run
+plot V(A) V(B) V(Y)
+.endc
+
+.end
